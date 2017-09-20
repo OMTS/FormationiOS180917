@@ -11,22 +11,23 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet weak var starwarsTableView: UITableView!
-    
-    let starWarsFirstNameData = ["Luke", "Han", "Leia", "Anakin", "Obiwan", "R2"]
-    let starWarsLastNameData = ["Skywalker", "Solo", "Skywalker", "Skywalker", "Kenoby", "D2"]
+
+    let starWarsPeople = People.all
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        starwarsTableView.estimatedRowHeight = 78
+        starwarsTableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let id = segue.identifier { //optional binding
             if id == "DetailViewControllerSegue" {
-                let destVC = segue.destination
-                
                 if let cell = sender as? UITableViewCell,
+                    let destVC = segue.destination as? PeopleViewController,
                     let indexPath = starwarsTableView.indexPath(for: cell) { //optional binding double
-                    destVC.title = starWarsFirstNameData[indexPath.row]
+                    destVC.people = starWarsPeople[indexPath.row]
                 }
             }
         }
@@ -36,15 +37,14 @@ class ViewController: UIViewController {
 //MARK: UITableViewDataSource requirements
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return starWarsFirstNameData.count
+        return starWarsPeople.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "starwarsCell", for: indexPath)
-        
-        cell.textLabel?.text = starWarsFirstNameData[indexPath.row]
-        cell.detailTextLabel?.text = starWarsLastNameData[indexPath.row]
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "starwarsCell", for: indexPath) as! PeopleTableViewCell
+
+        cell.nameLabel.text = starWarsPeople[indexPath.row].firstname + " " + starWarsPeople[indexPath.row].lastname
+
         return cell
     }
 }
@@ -55,4 +55,7 @@ extension ViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
+
+
+
 

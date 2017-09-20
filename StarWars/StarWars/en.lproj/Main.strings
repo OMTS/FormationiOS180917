@@ -1,0 +1,30 @@
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "2xi-mq-hJj"; */
+"2xi-mq-hJj.text" = "Subtitle";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "RqH-cC-eV9"; */
+"RqH-cC-eV9.normalTitle" = "Button";
+
+/* Class = "UITabBarItem"; title = "Favoris"; ObjectID = "Slz-WR-9vA"; */
+"Slz-WR-9vA.title" = "Favoris";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "aAN-5E-1Ts"; */
+"aAN-5E-1Ts.title" = "Home";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "hNy-AT-wyK"; */
+"hNy-AT-wyK.text" = "Label";
+
+/* Class = "UISegmentedControl"; hhz-cP-3yg.segmentTitles[0] = "Male"; ObjectID = "hhz-cP-3yg"; */
+"hhz-cP-3yg.segmentTitles[0]" = "Male";
+
+/* Class = "UISegmentedControl"; hhz-cP-3yg.segmentTitles[1] = "Female"; ObjectID = "hhz-cP-3yg"; */
+"hhz-cP-3yg.segmentTitles[1]" = "Female";
+
+/* Class = "UISegmentedControl"; hhz-cP-3yg.segmentTitles[2] = "n/a"; ObjectID = "hhz-cP-3yg"; */
+"hhz-cP-3yg.segmentTitles[2]" = "n/a";
+
+/* Class = "UILabel"; text = "fiywegfywfg wuiyfg wifg wiefg iweugf iwuegf iweug fiwuegf iweugf woeufg weogf weofh woeufg "; ObjectID = "oaZ-Fm-Z24"; */
+"oaZ-Fm-Z24.text" = "fiywegfywfg wuiyfg wifg wiefg iweugf iwuegf iweug fiwuegf iweugf woeufg weogf weofh woeufg ";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "wKq-Y7-4yc"; */
+"wKq-Y7-4yc.text" = "Title";

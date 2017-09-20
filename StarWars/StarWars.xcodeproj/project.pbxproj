@@ -14,6 +14,10 @@
 		0F3731071F71505900F029E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F3731051F71505900F029E2 /* LaunchScreen.storyboard */; };
 		0F3731121F71505900F029E2 /* StarWarsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3731111F71505900F029E2 /* StarWarsTests.swift */; };
 		0F37311D1F71505900F029E2 /* StarWarsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F37311C1F71505900F029E2 /* StarWarsUITests.swift */; };
+		64C1672F1F724F5F00A7FFF2 /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C1672E1F724F5F00A7FFF2 /* People.swift */; };
+		64C167311F72511C00A7FFF2 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C167301F72511C00A7FFF2 /* PeopleViewController.swift */; };
+		64C167351F728E9300A7FFF2 /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C167341F728E9300A7FFF2 /* PeopleTableViewCell.swift */; };
+		64C167371F72939200A7FFF2 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C167361F72939200A7FFF2 /* MovieCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,11 @@
 		0F3731181F71505900F029E2 /* StarWarsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StarWarsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F37311C1F71505900F029E2 /* StarWarsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsUITests.swift; sourceTree = "<group>"; };
 		0F37311E1F71505900F029E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64C1672E1F724F5F00A7FFF2 /* People.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = People.swift; sourceTree = "<group>"; };
+		64C167301F72511C00A7FFF2 /* PeopleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
+		64C167331F72585800A7FFF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		64C167341F728E9300A7FFF2 /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
+		64C167361F72939200A7FFF2 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +108,10 @@
 			children = (
 				0F3730FC1F71505900F029E2 /* AppDelegate.swift */,
 				0F3730FE1F71505900F029E2 /* ViewController.swift */,
+				64C167301F72511C00A7FFF2 /* PeopleViewController.swift */,
+				64C167341F728E9300A7FFF2 /* PeopleTableViewCell.swift */,
+				64C1672E1F724F5F00A7FFF2 /* People.swift */,
+				64C167361F72939200A7FFF2 /* MovieCollectionViewCell.swift */,
 				0F3731001F71505900F029E2 /* Main.storyboard */,
 				0F3731031F71505900F029E2 /* Assets.xcassets */,
 				0F3731051F71505900F029E2 /* LaunchScreen.storyboard */,
@@ -262,7 +275,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64C167351F728E9300A7FFF2 /* PeopleTableViewCell.swift in Sources */,
 				0F3730FF1F71505900F029E2 /* ViewController.swift in Sources */,
+				64C167311F72511C00A7FFF2 /* PeopleViewController.swift in Sources */,
+				64C167371F72939200A7FFF2 /* MovieCollectionViewCell.swift in Sources */,
+				64C1672F1F724F5F00A7FFF2 /* People.swift in Sources */,
 				0F3730FD1F71505900F029E2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,6 +320,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				0F3731011F71505900F029E2 /* Base */,
+				64C167331F72585800A7FFF2 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -516,6 +534,7 @@
 				0F3731231F71505900F029E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0F3731241F71505900F029E2 /* Build configuration list for PBXNativeTarget "StarWarsTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +543,7 @@
 				0F3731261F71505900F029E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0F3731271F71505900F029E2 /* Build configuration list for PBXNativeTarget "StarWarsUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +552,7 @@
 				0F3731291F71505900F029E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
