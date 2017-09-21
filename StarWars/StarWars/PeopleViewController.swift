@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import Alamofire
 
 class PeopleViewController: UIViewController {
 
-    var people: People!
+    var people: People! 
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
@@ -31,24 +32,11 @@ class PeopleViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-
-        title = "\(people.firstname) \(people.lastname)"
-
         moviesCollectionView.dataSource = self
-
-        genderSegmentedControl.selectedSegmentIndex = people.gender.rawValue
-
-        bioLB.text = people.bio
-
-        isAliveLabel.text = "Is alive"
-        isAliveSwitch.isOn = people.alive
-
-        nicknameLB.text = "Nickname"
-
         birthdateSlider.minimumValue = 1900
         birthdateSlider.maximumValue = 2000
-
-        birthdateSlider.value = Float(people.birthdate)
+        
+        updateUI()
 
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PeopleViewController.dismissKeyboard))
         scrollView.addGestureRecognizer(tapGestureRecognizer)
@@ -56,6 +44,24 @@ class PeopleViewController: UIViewController {
         if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad {
             // je suis sur iPad
         }
+        //ABSTRACTION COMPLETE DE LA SOURCE DE LA DONNEE
+        people.update {
+            self.updateUI()
+        }
+    }
+    
+    func updateUI() {
+        title = "\(people.firstname) \(people.lastname)"
+        
+        genderSegmentedControl.selectedSegmentIndex = people.gender.rawValue
+        
+        bioLB.text = people.bio
+        
+        isAliveLabel.text = "Is alive"
+        isAliveSwitch.isOn = people.alive
+        
+        nicknameLB.text = "Nickname"
+        birthdateSlider.value = Float(people.birthdate)
     }
 
     func dismissKeyboard() {
@@ -120,8 +126,9 @@ extension PeopleViewController: UICollectionViewDataSource {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as! MovieCollectionViewCell
 
-        cell.coverImageView.image = UIImage(named: people.movies[indexPath.item])
-
+        let pictureURL = people.movies[indexPath.row]
+        cell.coverImageView.sd_setImage(with: URL(string: pictureURL), placeholderImage: UIImage(named: "ph"))
+        
         return cell
     }
 }

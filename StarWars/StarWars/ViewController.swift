@@ -7,18 +7,25 @@
 //
 
 import UIKit
+import Alamofire
+import SDWebImage
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var starwarsTableView: UITableView!
 
-    let starWarsPeople = People.all
-
+    var starWarsPeople = [People]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         starwarsTableView.estimatedRowHeight = 78
         starwarsTableView.rowHeight = UITableViewAutomaticDimension
+        
+        People.all { newData in
+            self.starWarsPeople = newData
+            self.starwarsTableView.reloadData()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -43,7 +50,11 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "starwarsCell", for: indexPath) as! PeopleTableViewCell
 
-        cell.nameLabel.text = starWarsPeople[indexPath.row].firstname + " " + starWarsPeople[indexPath.row].lastname
+        cell.nameLabel.text = starWarsPeople[indexPath.row].nickname
+        
+        if let movieURL = starWarsPeople[indexPath.row].movies.first {
+            cell.pictureImageView.sd_setImage(with: URL(string: movieURL), placeholderImage: UIImage(named: "ph"))
+        }
 
         return cell
     }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OZ7-Ex-B9y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OZ7-Ex-B9y">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="78" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IT6-SC-6aj">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="78" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IT6-SC-6aj">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -30,11 +30,11 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="78"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wHs-QU-qr0" id="uKM-8G-GbT">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="77.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="SK2-GJ-zYf">
-                                                    <rect key="frame" x="10" y="-6.5" width="90" height="90.5"/>
+                                                    <rect key="frame" x="10" y="0.0" width="90" height="90.5"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="90" id="ga1-fm-KON"/>
@@ -42,7 +42,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wiq-Hk-lpZ">
-                                                    <rect key="frame" x="110" y="18" width="247" height="41.5"/>
+                                                    <rect key="frame" x="110" y="18" width="247" height="54.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -51,7 +51,9 @@
                                             <constraints>
                                                 <constraint firstItem="wiq-Hk-lpZ" firstAttribute="leading" secondItem="SK2-GJ-zYf" secondAttribute="trailing" constant="10" id="AZl-pY-yBU"/>
                                                 <constraint firstItem="SK2-GJ-zYf" firstAttribute="leading" secondItem="uKM-8G-GbT" secondAttribute="leading" constant="10" id="BpS-US-nl2"/>
+                                                <constraint firstItem="SK2-GJ-zYf" firstAttribute="top" secondItem="uKM-8G-GbT" secondAttribute="top" id="OSS-yD-zTY"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="wiq-Hk-lpZ" secondAttribute="bottom" constant="10" id="ZPF-hO-XmD"/>
+                                                <constraint firstAttribute="bottom" secondItem="SK2-GJ-zYf" secondAttribute="bottom" id="f6c-9D-4tk"/>
                                                 <constraint firstItem="SK2-GJ-zYf" firstAttribute="centerY" secondItem="uKM-8G-GbT" secondAttribute="centerY" id="lB2-la-guw"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="wiq-Hk-lpZ" secondAttribute="trailing" constant="10" id="pz6-vx-w9J"/>
                                                 <constraint firstItem="wiq-Hk-lpZ" firstAttribute="top" secondItem="uKM-8G-GbT" secondAttribute="topMargin" constant="10" id="toB-df-gRP"/>
@@ -100,7 +102,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lzR-rM-mT6">
-                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="510"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="g9U-X1-Q8g">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
@@ -366,7 +368,7 @@
                     <tabBarItem key="tabBarItem" title="Home" id="aAN-5E-1Ts"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="17q-vu-X0g">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

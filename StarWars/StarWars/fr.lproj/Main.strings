@@ -1,0 +1,30 @@
+
+/* Class = "UILabel"; text = "ON IPAD "; ObjectID = "N06-ON-Xms"; */
+"N06-ON-Xms.text" = "ON IPAD ";
+
+/* Class = "UITabBarItem"; title = "Favoris"; ObjectID = "Slz-WR-9vA"; */
+"Slz-WR-9vA.title" = "Favoris";
+
+/* Class = "UILabel"; text = "Nickname"; ObjectID = "YQY-jB-23N"; */
+"YQY-jB-23N.text" = "Nickname";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "aAN-5E-1Ts"; */
+"aAN-5E-1Ts.title" = "Home";
+
+/* Class = "UILabel"; text = "Is alive"; ObjectID = "hNy-AT-wyK"; */
+"hNy-AT-wyK.text" = "Is alive";
+
+/* Class = "UISegmentedControl"; hhz-cP-3yg.segmentTitles[0] = "Male"; ObjectID = "hhz-cP-3yg"; */
+"hhz-cP-3yg.segmentTitles[0]" = "Male";
+
+/* Class = "UISegmentedControl"; hhz-cP-3yg.segmentTitles[1] = "Female"; ObjectID = "hhz-cP-3yg"; */
+"hhz-cP-3yg.segmentTitles[1]" = "Female";
+
+/* Class = "UISegmentedControl"; hhz-cP-3yg.segmentTitles[2] = "n/a"; ObjectID = "hhz-cP-3yg"; */
+"hhz-cP-3yg.segmentTitles[2]" = "n/a";
+
+/* Class = "UILabel"; text = "fiywegfywfg wuiyfg wifg wiefg iweugf iwuegf iweug fiwuegf iweugf woeufg weogf weofh woeufg  qywrgf oirgf qpireufg qprfg qworfg q;wfg qrwofg qeiprufg qrufg eqriufg qerpguq"; ObjectID = "oaZ-Fm-Z24"; */
+"oaZ-Fm-Z24.text" = "fiywegfywfg wuiyfg wifg wiefg iweugf iwuegf iweug fiwuegf iweugf woeufg weogf weofh woeufg  qywrgf oirgf qpireufg qprfg qworfg q;wfg qrwofg qeiprufg qrufg eqriufg qerpguq";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "wiq-Hk-lpZ"; */
+"wiq-Hk-lpZ.text" = "Label";
