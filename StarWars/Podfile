@@ -8,6 +8,7 @@ target 'StarWars' do
   # Pods for StarWars
   pod 'Alamofire', '~> 4.5'
   pod 'SDWebImage', '~> 4.0'
+  pod 'RealmSwift'
   
   target 'StarWarsTests' do
     inherit! :search_paths

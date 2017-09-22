@@ -9,23 +9,32 @@
 import UIKit
 import Alamofire
 import SDWebImage
+import RealmSwift
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var starwarsTableView: UITableView!
 
-    var starWarsPeople = [People]()
-    
+    var starWarsPeople: Results<People>?
+    var realm: Realm!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         starwarsTableView.estimatedRowHeight = 78
         starwarsTableView.rowHeight = UITableViewAutomaticDimension
+        realm = try! Realm()
+
+        fetchAndUpdateLocalData()
         
-        People.all { newData in
-            self.starWarsPeople = newData
-            self.starwarsTableView.reloadData()
+        People.all { _ in
+            self.fetchAndUpdateLocalData()
         }
+    }
+    
+    func fetchAndUpdateLocalData() {
+        self.starWarsPeople = realm.objects(People.self)
+        self.starwarsTableView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -34,7 +43,7 @@ class ViewController: UIViewController {
                 if let cell = sender as? UITableViewCell,
                     let destVC = segue.destination as? PeopleViewController,
                     let indexPath = starwarsTableView.indexPath(for: cell) { //optional binding double
-                    destVC.people = starWarsPeople[indexPath.row]
+                    destVC.people = starWarsPeople![indexPath.row]
                 }
             }
         }
@@ -44,18 +53,17 @@ class ViewController: UIViewController {
 //MARK: UITableViewDataSource requirements
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return starWarsPeople.count
+        return starWarsPeople?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "starwarsCell", for: indexPath) as! PeopleTableViewCell
-
-        cell.nameLabel.text = starWarsPeople[indexPath.row].nickname
         
-        if let movieURL = starWarsPeople[indexPath.row].movies.first {
-            cell.pictureImageView.sd_setImage(with: URL(string: movieURL), placeholderImage: UIImage(named: "ph"))
-        }
-
+        let people = starWarsPeople![indexPath.row]
+        cell.nameLabel.text = people.nickname
+            
+        cell.pictureImageView.sd_setImage(with: URL(string: people.photoURL), placeholderImage: UIImage(named: "ph"))
+    
         return cell
     }
 }

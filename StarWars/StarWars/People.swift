@@ -8,10 +8,13 @@
 
 import Foundation
 import Alamofire
+import RealmSwift
 
-class People {
+class People: Object {
 
-    var id = ""
+    var delegate: PeopleUpdateDelegate?
+    
+    dynamic var id = ""
     
     enum Gender: Int {
         case male
@@ -19,8 +22,8 @@ class People {
         case other
     }
 
-    var firstname = ""
-    var lastname = ""
+    dynamic var firstname = ""
+    dynamic var lastname = ""
 
     var movies = [String]()
     var bio = "" // not in SWAPI
@@ -42,16 +45,23 @@ class People {
         }
     }
     
-    init(hash: [String: Any]) {
-        updateObject(fromHash: hash)
+    dynamic var photoURL: String = ""
+    
+    override static func ignoredProperties() -> [String] {
+        return ["movies", "bio", "alive", "gender", "birthdate", "nickname", "delegate"]
     }
-
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
     
     func updateObject(fromHash hash: [String: Any]) {
-        if let id = hash["url"] as? String {
-            self.id = id
+        if self.realm == nil {
+            if let id = hash["url"] as? String  {
+                self.id = id
+            }
         }
-        
+
         if let name = hash["name"] as? String {
             self.nickname = name
         }
@@ -69,6 +79,8 @@ class People {
         self.movies = ["https://lumiere-a.akamaihd.net/v1/images/lazada-starwars-1-1_741cd5d6.jpeg?region=0%2C0%2C1000%2C1000&width=320",
                        "https://i.pinimg.com/736x/87/1c/4a/871c4ad41bcd695d1476d8e0d6e7e32a--star-wars-stormtrooper-darth-vader.jpg",
                        "http://img0.gtsstatic.com/star-wars/star-wars-vii_164500_w460.jpg"]
+        
+        photoURL = movies.first!
     }
     
     static func all(completionHandler: @escaping ([People]) -> ()) {
@@ -83,26 +95,52 @@ class People {
                     guard let array = resultArray as? [ [String: Any] ] else {
                         return
                     }
+                    // Get the default Realm
+                    let realm = try! Realm()
+                    // You only need to do this once (per thread)
+                    
+                    
+                   
                     //array c'est un tableau de people (dict) => tableau de People
                     let tmp = array.map { (dict) -> People in
-                        return People(hash: dict)
+                        let people =  People()
+                        people.updateObject(fromHash: dict)
+                        
+                        // Add to the Realm inside a transaction
+                        try! realm.write {
+                            realm.create(People.self, value: people, update: true)
+                        }
+                        
+                        return people
                     }
                     
+                    //equivalent
+                    //let tmp = array.map { People(hash: $0) }                    
                     completionHandler(tmp)
                 }
             }
         }
     }
     
-    func update(completionHandler: @escaping () -> ()) {
+    func update() {
         Alamofire.request(self.id).responseJSON { response in
             if let json = response.result.value {
 
-                if let hash = json as? [String : Any] {
-                     self.updateObject(fromHash: hash)
-                     completionHandler()
+                if var hash = json as? [String : Any] {
+                    try! self.realm!.write {
+                        self.updateObject(fromHash: hash)
+
+                    }
+                    // self.delegate?.didUpdatePeople(people: self) // DELEGATE FASHION
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "PeopleUpdated"), object: self, userInfo: ["people": self]) // NOTIFICATION OLD FASHION
                 }
             }
         }
     }
 }
+
+
+protocol PeopleUpdateDelegate {
+    func didUpdatePeople(people: People)
+}
+

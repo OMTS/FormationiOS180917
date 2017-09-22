@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import RealmSwift
 
 class PeopleViewController: UIViewController {
 
@@ -27,17 +28,20 @@ class PeopleViewController: UIViewController {
     @IBOutlet weak var birthdateSlider: UISlider!
 
     @IBOutlet weak var nicknameLB: UILabel!
-
+    var realm: Realm!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        realm = try! Realm()
+        
         // Do any additional setup after loading the view.
         moviesCollectionView.dataSource = self
         birthdateSlider.minimumValue = 1900
         birthdateSlider.maximumValue = 2000
         
+        people.delegate = self
         updateUI()
-
+        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PeopleViewController.dismissKeyboard))
         scrollView.addGestureRecognizer(tapGestureRecognizer)
 
@@ -45,9 +49,12 @@ class PeopleViewController: UIViewController {
             // je suis sur iPad
         }
         //ABSTRACTION COMPLETE DE LA SOURCE DE LA DONNEE
-        people.update {
-            self.updateUI()
-        }
+        people.update()
+    }
+    
+    func handleNotification(notif: Notification) {
+        print(notif)
+        updateUI()
     }
     
     func updateUI() {
@@ -73,6 +80,8 @@ class PeopleViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(PeopleViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(PeopleViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(notif:)), name: NSNotification.Name(rawValue: "PeopleUpdated"), object: nil)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -144,3 +153,11 @@ extension PeopleViewController: UITextFieldDelegate {
         scrollView.scrollRectToVisible(textField.frame, animated: true)
     }
 }
+
+extension PeopleViewController: PeopleUpdateDelegate {
+    func didUpdatePeople(people: People) {
+        updateUI()
+    }
+}
+
+
