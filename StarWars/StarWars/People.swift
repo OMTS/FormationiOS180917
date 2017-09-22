@@ -24,6 +24,7 @@ class People: Object {
 
     dynamic var firstname = ""
     dynamic var lastname = ""
+    dynamic var isFavorite: Bool = false
 
     var movies = [String]()
     var bio = "" // not in SWAPI
@@ -103,14 +104,22 @@ class People: Object {
                    
                     //array c'est un tableau de people (dict) => tableau de People
                     let tmp = array.map { (dict) -> People in
-                        let people =  People()
-                        people.updateObject(fromHash: dict)
-                        
-                        // Add to the Realm inside a transaction
-                        try! realm.write {
-                            realm.create(People.self, value: people, update: true)
+                       
+                        if let people = realm.object(ofType: People.self, forPrimaryKey: dict["url"]) {
+                            try! realm.write {
+                                people.updateObject(fromHash: dict)
+                            }
+                            return people
+                        } else {
+                            let people = People()
+                            people.updateObject(fromHash: dict)
+                            // Add to the Realm inside a transaction
+
+                            try! realm.write {
+                                realm.create(People.self, value: people, update: true)
+                            }
+                            return people
                         }
-                        return people
                     }
                     
                     //equivalent
@@ -128,7 +137,6 @@ class People: Object {
                 if var hash = json as? [String : Any] {
                     try! self.realm!.write {
                         self.updateObject(fromHash: hash)
-
                     }
                     // self.delegate?.didUpdatePeople(people: self) // DELEGATE FASHION
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "PeopleUpdated"), object: self, userInfo: ["people": self]) // NOTIFICATION OLD FASHION

@@ -69,6 +69,9 @@ class PeopleViewController: UIViewController {
         
         nicknameLB.text = "Nickname"
         birthdateSlider.value = Float(people.birthdate)
+        
+        print(people.isFavorite)
+        favoriteBT.isSelected = people.isFavorite
     }
 
     func dismissKeyboard() {
@@ -110,6 +113,9 @@ class PeopleViewController: UIViewController {
 
     @IBAction func favoriteClicked(_ sender: Any) {
         favoriteBT.isSelected = !favoriteBT.isSelected
+        try! people.realm!.write {
+            people.isFavorite = favoriteBT.isSelected
+        }
     }
 
     @IBAction func aliveChanged(_ sender: Any) {
