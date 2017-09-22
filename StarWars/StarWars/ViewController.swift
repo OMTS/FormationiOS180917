@@ -17,7 +17,7 @@ class ViewController: UIViewController {
 
     var starWarsPeople: Results<People>?
     var realm: Realm!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,6 +25,20 @@ class ViewController: UIViewController {
         starwarsTableView.rowHeight = UITableViewAutomaticDimension
         realm = try! Realm()
 
+       /* DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async {
+            print("? - IS RUNNING IN BG")
+        }
+        
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).sync {
+            print("1 - IS RUNNING IN CURRENT QUEUE")
+        }
+        
+        DispatchQueue.main.async {
+            print("3 - IS RUNNING IN THREAD 1 (UI THREAD)")
+        }
+        
+        print("2 - continues the code")
+         */
         fetchAndUpdateLocalData()
         
         People.all { _ in

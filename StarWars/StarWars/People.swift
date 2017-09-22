@@ -110,7 +110,6 @@ class People: Object {
                         try! realm.write {
                             realm.create(People.self, value: people, update: true)
                         }
-                        
                         return people
                     }
                     
