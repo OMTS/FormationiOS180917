@@ -77,7 +77,6 @@ extension ViewController: UITableViewDataSource {
         cell.nameLabel.text = people.nickname
             
         cell.pictureImageView.sd_setImage(with: URL(string: people.photoURL), placeholderImage: UIImage(named: "ph"))
-    
         return cell
     }
 }
